@@ -27,6 +27,7 @@ pytest-cov = ">=3.0.0"
 
 [tool.poetry.extras]
 test = ["pytest", "pytest-cov"]
+
 [tool.poetry.plugins."mrfmsim_plugin"]
 unit = "mrfmsim_unit.unit"
 
