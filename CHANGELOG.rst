@@ -7,7 +7,7 @@ The format is based on
 and this project adheres to
 `Semantic Versioning <https://semver.org/spec/v2.0.0.html>`_
 
-[Unreleased]
+[0.1.0]
 ------------
 
 Initiate the project.
@@ -15,6 +15,7 @@ Initiate the project.
 Added
 ~~~~~
 
+- Add the ``MRFMSIM_SYSTEM`` unit system.
 - Add ``MRFMUnitRegistry`` and ``MRFMQuantity`` classes.
-- Add ``getattr`` to convert dataclass attributes to unit objects.
 - Add ``bm`` method to Quantity to convert value to base units.
+- Add ``getattr`` to convert dataclass attributes to unit objects.

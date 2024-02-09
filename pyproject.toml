@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "mrfmsim-unit"
-version = "0.0.1"
+version = "0.1.0"
 description = "Unit solutions for Magnetic Resonance Force Microscopy experiments"
 authors = ["Peter Sun <hs859@cornell.edu>"]
 maintainers = ["Peter Sun <hs859@cornell.edu>"]
