@@ -1,9 +1,35 @@
 # from mrfmsim_unit.unit import get_unit_registry, set_unit_default
-from mrfmsim_unit.unit import MRFMQuantity, MRFMUnitRegistry
+from mrfmsim_unit.unit import MRFMQuantity, MRFMUnitRegistry, MRFMSIM_SYSTEM
 from dataclasses import dataclass, field
 from pint import UnitRegistry
 import numpy as np
 
+
+class TestDefaultSystem:
+    """Test add default mrfmsim system to the registry."""
+
+    def test_default_system_method1(self):
+        """Test the default system of the MRFMUnitRegistry class."""
+
+        ureg = UnitRegistry(system="mrfmsim")
+        ureg.System.from_definition(MRFMSIM_SYSTEM)
+
+        q = 1 * ureg.tesla
+        assert q.to_base_units().magnitude == 1000
+        q = 1 * ureg.attonewton
+        assert np.isclose(q.to_base_units().magnitude, 1, rtol=1e-15)
+
+    def test_default_system_method2(self):
+        """Test the default system of the MRFMUnitRegistry class."""
+
+        ureg = UnitRegistry()
+        ureg.System.from_definition(MRFMSIM_SYSTEM)
+        ureg.default_system = "mrfmsim"
+
+        q = 1 * ureg.tesla
+        assert q.to_base_units().magnitude == 1000
+        q = 1 * ureg.attonewton
+        assert np.isclose(q.to_base_units().magnitude, 1, rtol=1e-15)
 
 def test_MRFMQuantity():
     """Test the MRFMQuantity class.
