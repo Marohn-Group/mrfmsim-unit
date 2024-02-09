@@ -15,6 +15,7 @@ python = ">=3.10"
 pint = ">=0.22"
 pytest = { version = ">=7.1.1", optional = true }
 pytest-cov = { version = ">=3.0.0", optional = true }
+numpy = { version = ">=1.26", optional = true }
 
 
 [build-system]
@@ -24,6 +25,7 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry.dev-dependencies]
 pytest = ">=7.1.1"
 pytest-cov = ">=3.0.0"
+numpy = ">=1.26"
 
 [tool.poetry.extras]
 test = ["pytest", "pytest-cov"]
@@ -33,20 +35,56 @@ unit = "mrfmsim_unit.unit"
 
 [tool.pytest.ini_options]
 filterwarnings = [
-    # note the use of single quote below to denote "raw" strings in TOML
-    # the escape sequence is necessary in graphviz dot string
-    # used to left align node text
-    'ignore:invalid escape sequence \\l:DeprecationWarning',
-    # The parallel method of numba might not be used in test
-    # ignore the warning
-    'ignore::numba.NumbaPerformanceWarning',
-    # the plot plugin's mayavi package has a deprecation warning
     'ignore::DeprecationWarning',
 ]
 
 [tool.coverage.run]
 # pytest coverage
-source_pkgs = [
-    'mrfmsim_unit',
-]
+source_pkgs = ['mrfmsim_unit']
 omit = ['tests/*']
+
+
+[tool.tox]
+# for testing different python environments
+legacy_tox_ini = """
+[tox]
+envlist = py310, py311, py312, coverage
+isolated_build = True
+ 
+[testenv:py310]
+deps = 
+    pytest >= 7.1.1
+    numpy >= 1.26
+commands = 
+    pytest
+
+[testenv:py311]
+deps = 
+    pytest >= 7.1.1
+    numpy >= 1.26
+commands = 
+    pytest
+
+[testenv:py312]
+deps = 
+    pytest >= 7.1.1
+    numpy >= 1.26
+commands = 
+    pytest
+
+[testenv:coverage]
+deps = 
+    pytest >= 7.1.1
+    pytest-cov >= 3.0.0
+    numpy >= 1.26
+commands =
+    coverage run --source=tests -m pytest
+    coverage html
+    coverage report
+
+[gh-actions]
+python =
+    3.10: py310, coverage
+    3.11: py311, coverage
+    3.12: py311, coverage
+"""
