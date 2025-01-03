@@ -2,7 +2,6 @@ from pint import UnitRegistry
 from pint.facets.system.definitions import BaseUnitRule, SystemDefinition
 from dataclasses import asdict
 
-__mrfmsim_plugin__ = ["MRFMUnitRegistry", "MRFMSIM_SYSTEM"]
 
 _BASE_UNITS_DICT = {
     "ampere": {"microampere": 1.0},

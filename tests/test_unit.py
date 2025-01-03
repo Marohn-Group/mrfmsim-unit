@@ -1,4 +1,3 @@
-# from mrfmsim_unit.unit import get_unit_registry, set_unit_default
 from mrfmsim_unit.unit import MRFMQuantity, MRFMUnitRegistry, MRFMSIM_SYSTEM
 from dataclasses import dataclass, field
 from pint import UnitRegistry
@@ -31,6 +30,7 @@ class TestDefaultSystem:
         q = 1 * ureg.attonewton
         assert np.isclose(q.to_base_units().magnitude, 1, rtol=1e-15)
 
+
 def test_MRFMQuantity():
     """Test the MRFMQuantity class.
 
@@ -42,6 +42,7 @@ def test_MRFMQuantity():
     assert q.magnitude == 1.0
     assert q.base_magnitude == 1.0e-9
     assert q.bm == 1.0e-9
+
 
 def test_MRFMUnitRegistry():
     """Test the MRFMUnitRegistry class.
@@ -63,6 +64,7 @@ def test_MRFMUnitRegistry():
     # test the default format
     assert str(1.0 * mureg.meter / mureg.second) == "1.0 m/s"
 
+
 def test_MRFMUnitRegistry_getattr():
     """Test the getattr method of MRFMUnitRegistry"""
 
@@ -74,13 +76,14 @@ def test_MRFMUnitRegistry_getattr():
 
         def __post_init__(self):
             self.d = 2
-        
+
     mureg = MRFMUnitRegistry()
     component = Component(1, 2.0)
     assert mureg.getattr(component, "a") == 1 * mureg.m
     assert mureg.getattr(component, "b") == 2.0 * mureg.mT
     assert mureg.getattr(component, "c") == 1
     assert mureg.getattr(component, "d") == 2
+
 
 def test_MRFMUnitREgistry_base_magnitude():
     """Test the base_magnitude property of MRFMUnitRegistry's Quanity"""
@@ -90,5 +93,3 @@ def test_MRFMUnitREgistry_base_magnitude():
     assert np.isclose((1 * mureg.m).bm, 1.0e9, rtol=1e-15)
     assert np.isclose((1 * mureg.T).bm, 1000, rtol=1e-15)
     assert np.isclose((1e-9 * mureg.N).bm, 1e9)
-
-

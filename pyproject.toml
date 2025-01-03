@@ -30,9 +30,6 @@ numpy = ">=1.26"
 [tool.poetry.extras]
 test = ["pytest", "pytest-cov"]
 
-[tool.poetry.plugins."mrfmsim_plugin"]
-unit = "mrfmsim_unit.unit"
-
 [tool.pytest.ini_options]
 filterwarnings = [
     'ignore::DeprecationWarning',

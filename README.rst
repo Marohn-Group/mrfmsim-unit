@@ -3,7 +3,6 @@ mrfmsim-unit
 
 The *mrfmsim-unit* package is a part of the
 `mrfmsim project <https://marohn-group.github.io/mrfmsim-docs/>`__. 
-The package is required by the *mrfmsim* package and is loaded automatically as a plugin.
 The package provides a set of units
 that is natural to the mrfmsim problems while avoiding rounding errors. 
 The package should be used with the unit package `pint <https://pint.readthedocs.io/en/stable/>`__.
@@ -95,7 +94,7 @@ For existing workflows incorporating the ``UnitRegistry``, we provide the custom
 .. code-block:: python
 
     from pint import UnitRegistry
-    from mrfmsim.unit import MRFMSIM_SYSTEM
+    from mrfmsim_unit.unit import MRFMSIM_SYSTEM
 
     # create the unit registry
     ureg = UnitRegistry(system="mrfmsim")
@@ -106,7 +105,7 @@ or
 .. code-block:: python
 
     from pint import UnitRegistry
-    from mrfmsim.unit import MRFMSIM_SYSTEM
+    from mrfmsim_unit.unit import MRFMSIM_SYSTEM
 
     # create the unit registry
     ureg = UnitRegistry()
